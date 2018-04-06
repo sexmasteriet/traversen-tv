@@ -6,16 +6,19 @@ using UnityEngine.UI;
 
 public class SlideManager : MonoBehaviour
 {
-    public RawImage current;
-    public RawImage next;
+    Slide current;
+    Slide next;
 
+    public Slide slidePrefab;
     public float slideDuration = 1.0f;
 
     FileInfo currentFile;
 
     void Start()
     {
-        UpdateSlides();
+        RefreshCurrentFile();
+        next = SpawnSlide(currentFile.FullName);
+        
         StartCoroutine(UpdateLoop());
     }
 
@@ -29,6 +32,25 @@ public class SlideManager : MonoBehaviour
     }
 
     void UpdateSlides()
+    {
+        RefreshCurrentFile();
+
+        if (current)
+        {
+            Destroy(current.gameObject);
+        }
+
+        if (next)
+        {
+            current = next;
+            current.gameObject.SetActive(true);
+        }
+
+        next = SpawnSlide(currentFile.FullName);
+        next.gameObject.SetActive(false);
+    }
+
+    void RefreshCurrentFile()
     {
         string path = Path.Combine(Application.persistentDataPath, "Slides");
         DirectoryInfo di = new DirectoryInfo(path);
@@ -49,18 +71,15 @@ public class SlideManager : MonoBehaviour
                 break;
             }
         }
+    }
 
-        if (next.texture)
-        {
-            current.texture = next.texture;
-            AspectRatioFitter fitter = current.GetComponent<AspectRatioFitter>();
-            fitter.aspectRatio = (float)current.texture.width / (float)current.texture.height;
-        }
-
-        byte[] fileData = File.ReadAllBytes(currentFile.FullName);
-        Texture2D texture = new Texture2D(2, 2);
-        texture.LoadImage(fileData);
-        next.texture = texture;
-
+    Slide SpawnSlide(string filePath)
+    {
+        Slide s = Instantiate(slidePrefab);
+        RectTransform t = s.GetComponent<RectTransform>();
+        t.SetParent(transform, false);
+        t.SetSiblingIndex(0);
+        s.Load(filePath);
+        return s;
     }
 }
