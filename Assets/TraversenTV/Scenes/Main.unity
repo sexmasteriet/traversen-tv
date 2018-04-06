@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 1097986442}
   - component: {fileID: 1097986441}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ClackPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 1684474552}
   - component: {fileID: 1684474554}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Clock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

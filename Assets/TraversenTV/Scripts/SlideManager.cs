@@ -16,10 +16,11 @@ public class SlideManager : MonoBehaviour
 
     void Start()
     {
-        RefreshCurrentFile();
-        next = SpawnSlide(currentFile.FullName);
+        UpdateSlides();
         
         StartCoroutine(UpdateLoop());
+
+        Cursor.visible = false;
     }
 
     IEnumerator UpdateLoop()
@@ -62,7 +63,6 @@ public class SlideManager : MonoBehaviour
             if (currentFile == null)
             {
                 currentFile = f;
-                print(currentFile);
                 break;
             }
             if (currentFile.FullName == f.FullName)
