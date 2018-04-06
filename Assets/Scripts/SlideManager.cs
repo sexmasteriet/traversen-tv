@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SlideLoader : MonoBehaviour
+public class SlideManager : MonoBehaviour
 {
     public RawImage current;
     public RawImage next;
