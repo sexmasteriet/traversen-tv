@@ -19,8 +19,6 @@ public class SlideManager : MonoBehaviour
         UpdateSlides();
         
         StartCoroutine(UpdateLoop());
-
-        Cursor.visible = false;
     }
 
     IEnumerator UpdateLoop()

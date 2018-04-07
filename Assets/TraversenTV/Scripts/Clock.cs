@@ -1,16 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Clock : MonoBehaviour {
+[RequireComponent(typeof(Text))]
+public class Clock : MonoBehaviour
+{
+	DateTime now;
 
-	// Use this for initialization
-	void Start () {
-		
+	Text text;
+
+	void Start()
+	{
+		text = GetComponent<Text>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    void Update()
+    {
+		now = DateTime.Now;
+
+		text.text = now.ToString("HH:mm");
+    }
 }
