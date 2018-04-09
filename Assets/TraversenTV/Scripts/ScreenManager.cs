@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GlobalManager : MonoBehaviour
+public class ScreenManager : MonoBehaviour
 {
     public UnityEvent fullscreenEnter;
     public UnityEvent fullscreenExit;
